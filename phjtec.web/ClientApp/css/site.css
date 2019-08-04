@@ -24,10 +24,11 @@ nav ul li
     list-style-type: none;
 }
 
-nav a, nav a:hover, nav a:visited {
+nav a, nav a:hover, nav a:visited, nav a:current {
     color: #ccc;
     font-weight: bold;
     font-size: 1.1em;
+    text-decoration: none;
 }
 
 .row .content
