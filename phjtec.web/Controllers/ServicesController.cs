@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using phjtec.web.core.io;
 
 namespace phjtec.web.Controllers
 {
@@ -7,26 +11,30 @@ namespace phjtec.web.Controllers
     [Route("api/Services")]
     public class ServicesController : Controller
     {
-        private readonly IEnumerable<ProvidedService> _providedServices;
-        public ServicesController()
-        {
-            _providedServices = new List<ProvidedService>
-                {
-                    new ProvidedService
-                    {
-                        Name = "Software Development",
-                        Description = "We provide software development solutions for a range of uses, from small desktop application development to enterprise level multi-tier microservice architecture solutions."
-                    },
-                     new ProvidedService
-                    {
-                        Name = "Performance Testing",
-                        Description = "Ensuring your solutions perform under pressure is an important and often overlooked aspect, we can help identify performance bottlenecks and guide you on ways to mitigate performance issues."
-                    }
-                };
+        private static IEnumerable<ProvidedService> _providedServices;
+        private readonly IJsonContentReader _jsonContentReaderService;
+        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly string _servicesContentPath;
+        private static DateTime _cacheAge;
+
+        public ServicesController(IJsonContentReader jsonContentReaderService, IHostingEnvironment hostingEnvironment)
+        {         
+            _jsonContentReaderService = jsonContentReaderService;
+            _hostingEnvironment = hostingEnvironment;
+            _servicesContentPath = System.IO.Path.Combine(_hostingEnvironment.ContentRootPath, "content/services");
         }
+
+        
+
         [HttpGet]
         public IEnumerable<ProvidedService> Get()
         {
+            if(DateTime.Now - _cacheAge > TimeSpan.FromMinutes(5))
+            {
+                _providedServices = _jsonContentReaderService.ReadMany<ProvidedService>(_servicesContentPath).ToList();
+                _cacheAge = DateTime.Now;
+            }
+           
             return _providedServices;
         }
 
