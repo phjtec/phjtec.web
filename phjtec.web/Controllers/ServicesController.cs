@@ -31,7 +31,7 @@ namespace phjtec.web.Controllers
         {
             if(DateTime.Now - _cacheAge > TimeSpan.FromMinutes(5))
             {
-                _providedServices = _jsonContentReaderService.ReadMany<ProvidedService>(_servicesContentPath).ToList();
+                _providedServices = _jsonContentReaderService.ReadMany<ProvidedService>(_servicesContentPath).OrderBy(s => Guid.NewGuid()).Take(3).ToList();
                 _cacheAge = DateTime.Now;
             }
            
