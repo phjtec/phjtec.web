@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "phjtec.web", "phjtec.web\phjtec.web.csproj", "{4B58D6F9-63DA-4A6E-81B8-875FE1676083}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "phjtec.web", "phjtec.web\phjtec.web.csproj", "{4B58D6F9-63DA-4A6E-81B8-875FE1676083}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "phjtec.web.core", "phjtec.web.core\phjtec.web.core.csproj", "{07E00CC7-BD3D-459E-AD67-B3FDED69B11B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{4B58D6F9-63DA-4A6E-81B8-875FE1676083}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B58D6F9-63DA-4A6E-81B8-875FE1676083}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B58D6F9-63DA-4A6E-81B8-875FE1676083}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07E00CC7-BD3D-459E-AD67-B3FDED69B11B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07E00CC7-BD3D-459E-AD67-B3FDED69B11B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07E00CC7-BD3D-459E-AD67-B3FDED69B11B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07E00CC7-BD3D-459E-AD67-B3FDED69B11B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

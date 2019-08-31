@@ -26,7 +26,23 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\phjtec.web.core\phjtec.web.core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TypeScriptCompile Include="ClientApp\components\Services.tsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="content\services\GISTechnologies.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="content\services\PerformanceTesting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="content\services\SoftwareDevelopment.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
