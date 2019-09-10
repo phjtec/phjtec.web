@@ -8,7 +8,7 @@ using phjtec.web.core.io;
 namespace phjtec.web.Controllers
 {
     [Produces("application/json")]
-    [Route("api/Services")]
+
     public class ServicesController : Controller
     {
         private static IEnumerable<ProvidedService> _providedServices;
@@ -27,6 +27,7 @@ namespace phjtec.web.Controllers
         
 
         [HttpGet]
+        [Route("api/Services")]
         public IEnumerable<ProvidedService> Get()
         {
             if(DateTime.Now - _cacheAge > TimeSpan.FromMinutes(5))
@@ -38,10 +39,20 @@ namespace phjtec.web.Controllers
             return _providedServices;
         }
 
+        [HttpGet]
+        [Route("api/Services/{serviceRoute}")]
+        public IEnumerable<ProvidedService> Get(string serviceRoute)
+        {
+            var providedServices = _jsonContentReaderService.ReadMany<ProvidedService>(_servicesContentPath).Where(s => s.ServiceRoute == serviceRoute).ToList();
+            return providedServices;
+        }
+
         public class ProvidedService
         {
             public string Name { get; set; }
             public string Description { get; set; }
+            public string FullContent { get; set; }
+            public string ServiceRoute { get; set; }
         }
     }
 }

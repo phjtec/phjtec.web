@@ -8,26 +8,24 @@ interface ServicesState {
 }
 
 
-export class Services extends React.Component<RouteComponentProps<ProvidedService>, ServicesState> {
+export class ServiceDetail extends React.Component<RouteComponentProps<ProvidedService>, ServicesState> {
     constructor(props: RouteComponentProps<ProvidedService>) {
         super(props);
-
         this.state = { services: [], loading: true };
 
+        var serviceRoute = this.props.match.params.serviceRoute;
 
-            fetch('api/services')
-                .then(response => response.json() as Promise<ProvidedService[]>)
-                .then(data => {
-                    this.setState({ services: data, loading: false });
-                });
-        
-        
+        fetch('api/services/' + serviceRoute)
+            .then(response => response.json() as Promise<ProvidedService[]>)
+            .then(data => {
+                this.setState({ services: data, loading: false });
+            });
     }
 
     public render() {
-        let contents = this.state.loading 
+        let contents = this.state.loading
             ? <p><em>Loading...</em></p>
-            : Services.renderServices(this.state.services);
+            : ServiceDetail.renderServices(this.state.services);
 
         return <div>{contents}</div>;
     }
@@ -38,12 +36,7 @@ export class Services extends React.Component<RouteComponentProps<ProvidedServic
                 services.map(s =>
                     <div className='service'>
                         <h2>{s.name}</h2>
-                        <p>{s.description}</p>
-                        {
-                            s.serviceRoute !== null
-                                ? <a href={'/we-provide/' + s.serviceRoute }>read more &gt;</a>
-                                : ''
-                        }
+                        <div>{s.fullContent || s.description }</div>
                     </div>)
             }
         </section>;

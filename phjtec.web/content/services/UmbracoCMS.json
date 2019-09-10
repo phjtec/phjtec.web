@@ -1,0 +1,6 @@
+﻿{
+  "Name": "UmbracoCMS",
+  "Description": "Full web builds in Umbraco.",
+  "ServiceRoute": "umbraco-cms-web-builds",
+  "FullContent": "Full web builds in Umbraco. Currently in Umbraco 8."
+}
